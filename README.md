@@ -21,7 +21,7 @@ If you are developing a production application, we recommend using TypeScript wi
 
 MSW es una libreria para emular el trabajo que realiza un servicio, esto es lo que se llama a mockear
 
-```js
+```batch
  npm install msw -D
 
 ```
@@ -117,7 +117,10 @@ useEffect(() => {
 
 al ejecutarse el proyecto con npm run dev deberia mostrar los siquientes mensajes en consola
 
+```batch
 msw_browser.js?v=8c218697:1054 [MSW] Mocking enabled.
 2handlers.js:5 MWS INTERCEPTO /API/PRODUCTS
 msw.js?v=8c218697:978 [MSW] 11:50:33 GET /api/products (200 OK)
 msw.js?v=8c218697:978 [MSW] 11:50:33 GET /api/products (200 OK)
+
+```

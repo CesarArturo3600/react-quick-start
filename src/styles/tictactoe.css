@@ -1,0 +1,18 @@
+.board-row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.square {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 0px;
+  border: 1px solid rgb(213, 213, 213);
+  color: rgb(133, 133, 133);
+  font-size: 24px;
+  padding: 0px;
+  margin: 1px;
+}
