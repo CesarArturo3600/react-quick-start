@@ -2,16 +2,24 @@ import React from 'react'
 
 const TableFruits = ({ data = {}, checked = false, searchText = '' }) => {
   const filteredProducts = category => {
+    if (!data[category] || !Array.isArray(data[category])) {
+      return []
+    }
+
     return data[category].filter(product => {
       const textSearchedValidation = product.name
         .trim()
         .toLowerCase()
-        .includes(searchText)
+        .includes(searchText.toLowerCase())
 
       const fruitValidation = !checked || product.stocked
 
       return textSearchedValidation && fruitValidation
     })
+  }
+
+  if (!data || Object.keys(data).length === 0) {
+    return <div className="loading-data">Loading</div>
   }
 
   return (
@@ -27,6 +35,8 @@ const TableFruits = ({ data = {}, checked = false, searchText = '' }) => {
           {data &&
             Object.keys(data).map(prodCat => {
               const filteredData = filteredProducts(prodCat)
+
+              if (filteredData.length === 0) return null
 
               return (
                 <React.Fragment key={prodCat}>

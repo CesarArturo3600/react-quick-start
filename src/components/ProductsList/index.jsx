@@ -10,7 +10,7 @@ import TableFruits from '@components/TableFruits'
 import '@styles/fruitList.css'
 
 const ProductList = () => {
-  const [dataFruits, setDataFruits] = useState({})
+  const [dataFruits, setDataFruits] = useState(null)
   const [checked, setChecked] = useState(false)
   const [searchText, setSearchText] = useState('')
 
@@ -25,19 +25,20 @@ const ProductList = () => {
 
   useEffect(() => {
     const processData = async () => {
-      fetch('/api/products')
-        .then(Response => Response.json())
-        .then(fruits => {
-          const nuevosdatos = fruits.reduce((acc, item) => {
-            if (!acc[item.category]) {
-              acc[item.category] = []
-            }
-            acc[item.category].push(item)
-            return acc
-          }, {})
-
-          setDataFruits(nuevosdatos)
-        })
+      try {
+        const response = await fetch('/api/products')
+        const fruits = await response.json()
+        const nuevosdatos = fruits.reduce((acc, item) => {
+          if (!acc[item.category]) {
+            acc[item.category] = []
+          }
+          acc[item.category].push(item)
+          return acc
+        }, {})
+        setDataFruits(nuevosdatos)
+      } catch (err) {
+        console.error('error fetching products:', err)
+      }
     }
     processData()
   }, [])

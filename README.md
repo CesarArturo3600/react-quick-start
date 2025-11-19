@@ -55,6 +55,8 @@ enableMocking().then(() => {
 })
 ```
 
+se define una funcion asincrona que pregunta si se ejecuta en un ambiente de desarrollo. si es asi entonces se crea la instancia de setupWorker llamada worker. se inicializa con el metodo start y se configura para que si el patron coincide se ejecute si es que esta registrado en el mock en caso contrario si el patron pertenece a un servicio real esta se ejecutaria
+
 ## CARPETA MOCKS
 
 tamb ien encesita una carpeta llamada mocks y dentro 2 archivos:
@@ -95,7 +97,6 @@ inicialmente en el componente ProductList se emplea de la siguiente manera:
 ```js
 useEffect(() => {
   const processData = async () => {
-    console.log('inicio!!')
     fetch('/api/products')
       .then(Response => Response.json())
       .then(fruits => {
